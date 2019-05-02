@@ -13,6 +13,12 @@ SELECT name, gdp/population AS per_capita_GDP FROM world
 SELECT name, population/1000000 as population_in_millions FROM world
   WHERE continent = 'South America';
 
---5. Show the name and population for France, Germany, Italy
+-- 5. Show the name and population for France, Germany, Italy
 SELECT name, population FROM world
-WHERE name IN ('France', 'Germany', 'Italy');
+  WHERE name IN ('France', 'Germany', 'Italy');
+
+-- 6. Show the countries which have a name that includes the word 'United'
+SELECT name FROM world
+  WHERE name LIKE '%United%';
+
+-- 7. Show the countries that are big by area or big by population. Show name, population and area.
