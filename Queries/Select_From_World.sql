@@ -37,3 +37,7 @@ FROM world
 -- 10. Show per-capita GDP for the trillion dollar countries to the nearest $1000.
 SELECT name, ROUND(gdp/population,-3) AS per_capita_GDP FROM world
   WHERE gdp >= 1000000000000;
+
+-- 11. Show the name and capital where the name and the capital have the same number of characters.
+SELECT name, capital FROM world
+  WHERE LENGTH(name) = LENGTH(capital);
