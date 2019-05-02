@@ -11,4 +11,21 @@ SELECT id, title, yr FROM movie
 WHERE title LIKE '%Star Trek%'
 ORDER BY yr;
 
+-- 4. What id number does the actor 'Glenn Close' have?
+SELECT id FROM actor
+WHERE name = 'Glenn Close';
 
+-- 5. What is the id of the film 'Casablanca'
+SELECT id FROM movie
+WHERE title = 'Casablanca';
+
+-- 6. Obtain the cast list for 'Casablanca'.
+SELECT name FROM casting 
+JOIN actor ON id = actorid
+WHERE movieid = 11768;
+
+-- 7. Obtain the cast list for the film 'Alien'
+SELECT name FROM movie 
+JOIN casting ON id = movieid 
+JOIN actor ON actor.id = actorid
+WHERE title = 'Alien';
