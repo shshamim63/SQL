@@ -37,3 +37,11 @@ FROM route a JOIN route b
 ON (a.company = b.company AND a.num = b.num)
 WHERE a.stop = 115 AND b.stop = 137;
 
+-- 8. Give a list of the services which connect the stops 'Craiglockhart' and 'Tollcross'
+SELECT DISTINCT a.company, a.num
+FROM route a JOIN route b 
+ON (a.company = b.company AND a.num = b.num) 
+JOIN stops stopa ON stopa.id = a.stop 
+JOIN stops stopb ON stopb.id = b.stop
+WHERE stopa.name = 'Craiglockhart' 
+AND stopb.name = 'Tollcross';
