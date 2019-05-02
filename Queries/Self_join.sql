@@ -10,8 +10,8 @@ SELECT id, name FROM route
 JOIN stops ON stops.id =stop
 WHERE num = 4 AND company = 'LRT';
 
--- 4. Give the number of routes that visit either London Road (149) or Craiglockhart (53). The two services that link these stops have a count of 2. 
--- Restrict the output to these two routes.
+-- 4. Give the number of routes that visit either London Road (149) or Craiglockhart (53). 
+-- The two services that link these stops have a count of 2. Restrict the output to these two routes.
 SELECT company, num, COUNT(*) FROM route
 WHERE stop = 149 OR stop = 53
 GROUP BY company, num
@@ -54,3 +54,20 @@ ON (a.company = b.company AND a.num = b.num)
 JOIN stops stopa ON stopa.id = a.stop 
 JOIN stops stopb ON stopb.id = b.stop
 WHERE stopa.name = 'Craiglockhart';
+
+-- 10. Find the routes involving two buses that can go from Craiglockhart to Lochend. Show the bus no. 
+-- and company for the first bus, the name of the stop for the transfer, and the bus no. and company for the second bus.
+SELECT t1.num, t1.company, t1.stopb, t2.num, t2.company
+FROM (SELECT a.num, a.company, stopb.name stopb
+  FROM route a JOIN route b ON (a.company = b.company AND a.num = b.num) 
+  JOIN stops stopa ON stopa.id = a.stop 
+  JOIN stops stopb ON stopb.id = b.stop
+  WHERE stopa.name = 'Craiglockhart') t1
+  JOIN
+  (SELECT a.num, a.company, stopa.name stopa
+  FROM route a JOIN route b 
+  ON (a.company = b.company AND a.num = b.num) 
+  JOIN stops stopa ON stopa.id = a.stop 
+  JOIN stops stopb ON stopb.id = b.stop
+  WHERE stopb.name = 'Lochend') t2
+  ON t1.stopb = t2.stopa;
