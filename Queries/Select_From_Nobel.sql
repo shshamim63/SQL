@@ -38,3 +38,11 @@ WHERE yr = 1980 AND subject NOT IN ('Chemistry', 'Medicine');
 -- together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
 SELECT yr, subject, winner FROM nobel
 WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004);
+
+-- 11. Find all details of the prize won by PETER GRÜNBERG
+SELECT * FROM nobel
+WHERE winner = 'PETER GRÜNBERG';
+
+-- 12. Find all details of the prize won by EUGENE O'NEILL
+SELECT * FROM nobel
+WHERE winner = 'EUGENE O''NEILL';
